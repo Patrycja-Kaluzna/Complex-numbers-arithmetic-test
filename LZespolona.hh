@@ -74,4 +74,6 @@ istream & operator >> (istream &, LZespolona &);
  */
 ostream & operator << (ostream &, LZespolona);
 
+LZespolona operator % (LZespolona, LZespolona);
+
 #endif

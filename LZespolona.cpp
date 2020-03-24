@@ -327,3 +327,39 @@ ostream & operator << (ostream & StreamWyj, LZespolona LZ)
   }
   return StreamWyj;
 }
+
+
+
+LZespolona operator % (LZespolona LZ1, LZespolona LZ2)
+{
+  int pomre, pomim, LZ1rei, LZ1imi, LZ2rei, LZ2imi;
+  LZespolona pomLZ;
+
+  LZ1rei = LZ1.re;
+  LZ1imi = LZ1.im;
+  LZ2rei = LZ2.re;
+  LZ2imi = LZ2.im;
+
+  pomre = LZ1rei % LZ2rei;
+  pomim = LZ1imi % LZ2imi;
+
+  if (pomre == 0 && pomim == 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+
+  if (pomre != 0 && pomim != 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+
+  if (pomre != 0 && pomim == 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+  
+  return pomLZ;
+}

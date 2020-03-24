@@ -37,14 +37,15 @@ int main(int argc, char **argv)
   //TEST PRZECIĄŻEŃ OPERATORÓW +, -, *, / DLA LICZB ZESPOLONYCH (I JEDNOCZENIE TEST WYSWIETLANIA LICZBY ZESPOLONEJ) 
 
   LZespolona Skl1, Skl2, Wynik;
-  double Ltd;
+  //double Ltd;
 
   Skl1.re = 1;
   Skl1.im = 2;
   Skl2.re = 3;
-  Skl2.im = 4;
-  Ltd = 2;
+  Skl2.im = 2;
+  //Ltd = 2;
 
+  /*
   cout << endl;
   cout << " Dodawanie liczby zespolonych:";
   Wynik = Skl1 + Skl2;
@@ -70,9 +71,11 @@ int main(int argc, char **argv)
   Wynik = Skl1 / Skl2;
   Wyswietl (Wynik);
   cout << endl;
+  */
 
   //TEST STATYSTYKI
 
+  /*
   Statystyka Stat;
 
   Stat.DobreOdp = 2;
@@ -81,9 +84,11 @@ int main(int argc, char **argv)
   cout << endl;
   WyswietlStatystyke (Stat);
   cout << endl;
+  */
 
   //TEST WYŚWIETLANIA WYRAŻENIA ZESPOLONEGO
 
+  /*
   WyrazenieZesp WZ;
 
   WZ.Arg1.re = 1;
@@ -94,9 +99,11 @@ int main(int argc, char **argv)
 
   Wyswietl (WZ);
   cout << endl;
+  */
 
   //TEST WCZYTYWANIA WYRAZENIA ZESPOLONEGO (I JEDNOCZESNIE LICZBY ZESPOLONEJ) ORAZ WYSWIETLANIA ICH
 
+  /*
   WyrazenieZesp WZ2;
 
   cout << endl;
@@ -104,15 +111,19 @@ int main(int argc, char **argv)
   cout << endl;
   Wyswietl (WZ2);
   cout << endl;
+  */
 
   //TEST OBLICZANIA WYRAZENIA ZESPOLONEGO
 
+  /*
   cout << endl;
   Wyswietl (Oblicz (WZ2));
   cout << endl;
+  */
 
   //WCZYTYWANIE LICZBY ZESPOLONEJ ZA POMOCA PRZECIAZENIA OPERATORA >> ORAZ WYSWIETLENIE JEJ
-
+  
+  /*
   LZespolona LZ;
 
   cout << endl;
@@ -120,14 +131,23 @@ int main(int argc, char **argv)
   cout << endl;
   Wyswietl (LZ);
   cout << endl;
+  */
 
   //WYSWIETLANIE LICZBY ZESPOLONEJ ZA POMOCA PRZECIAZENIA OPERATORA << 
 
-  cout << endl << Skl1 << endl;
+  //cout << endl << Skl1 << endl;
 
   //WYSWIETLANIE WYRAZENIE ZESPOLONEGO ZA POMOCA PRZECIAZENIA OPERATORA <<
 
-  cout << endl << WZ << endl;
+  //cout << endl << WZ << endl;
+
+  //TEST PRZECIEZENIA OPERATORA % DLA LICZB ZESOPLONYCH
+
+  cout << endl;
+  cout << " Dzielenie modulo liczb zespolonych:";
+  Wynik = Skl1 % Skl2;
+  Wyswietl (Wynik);
+  cout << endl;
 
   cout << endl;
   cout << " Koniec testu" << endl;
