@@ -8,15 +8,15 @@ using namespace std;
 
 /*
  * Plik zawiera definicje struktury WyrazenieZesp oraz
- * zapowiedzi funkcji dzialajacych na tej strukturze,
- * a takze definicje zmiennej Operator bedacej typu
- * wyliczeniowego.
+ * zapowiedzi funkcji dzialajacych na tej strukturze i
+ * przeciazenia operatora dla niej, a takze definicje 
+ * zmiennej Operator bedacej typu wyliczeniowego.
  */
 
 /*!
  * Modeluje zbior operatorow arytmetycznych.
  */
-enum Operator {Op_Dodaj, Op_Odejmij, Op_Mnoz, Op_Dziel};
+enum Operator {Op_Dodaj, Op_Odejmij, Op_Mnoz, Op_Dziel, Op_Modulo};
 
 /*
  * Modeluje pojecie dwuargumentowego wyrazenia zespolonego.

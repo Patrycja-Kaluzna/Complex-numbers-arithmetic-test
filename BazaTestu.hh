@@ -21,6 +21,11 @@ struct BazaTestu {
 };
 
 /*
+ * Ustawia wybrany test jako biezacy i ustawia indeks pytania na pierwsze z nich.
+ */
+void UstawTest (BazaTestu *, WyrazenieZesp *, unsigned int);
+
+/*
  * Inicjalizuje test powiazany z dana nazwa.
  */
 bool InicjalizujTest(BazaTestu  *, const char *);

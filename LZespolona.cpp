@@ -135,6 +135,8 @@ LZespolona operator / (LZespolona Wynik, double M2)
   return LZpD;
 }
 
+
+
 /*
  * Realizuje dzielenie dwoch liczb zespolonych przy
  * wykorzystaniu przeciazenia operatora mnozenia dla 
@@ -179,7 +181,7 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
  * 
  * Zwraca: 
  *    W przypadku powodzenia wczytana liczbe zespolona, a
- *    w przeciwnym przypadku wyswietla stosowny komunikat o
+ *    w przeciwnym przypadku wyswietla też stosowny komunikat o
  *    bledzie.
  */
 LZespolona WczytajLZ ()
@@ -307,7 +309,7 @@ istream & operator >> (istream & StreamWej, LZespolona & LZ)
  *      LZ - liczba zespolona, ktora zostanie
  *           wyswietlona.
  * 
- * Warunek wstepny:
+ * Warunki wstepne:
  *      - Pierwszy parametr musi byc przekazany
  *        przez referencje.
  *      - Poprawnie zainicjowane elementy 
@@ -326,4 +328,88 @@ ostream & operator << (ostream & StreamWyj, LZespolona LZ)
     StreamWyj << LZ.im << "i)";
   }
   return StreamWyj;
+}
+
+
+
+/*
+ * Funkcja porównuje ze soba dwie
+ * liczby zespolone.
+ *
+ * Argumenty:
+ *      LZ1 - pierwsza z porównywanych liczb,
+ *      LZ2 - druga z porównywanych liczb.
+ *
+ * Zwraca:
+ *      True jeśli liczby sa takie same lub
+ *      false jeśli roznia sie.
+ */
+bool operator == (LZespolona LZ1, LZespolona LZ2)
+{
+   if (LZ1.re != LZ2.re || LZ1.im != LZ2.im)
+    {
+      cout << " Blad. Prawidlowym wynikiem jest:" << LZ2 << endl;
+      cout << endl;
+      return false;
+    } else {
+      cout << " Odpowiedz poprawna" << endl;
+      cout << endl;
+      return true;
+    }
+}
+
+
+
+/*
+ * Realizuje dzielenie modulo dwoch liczb
+ * zespolonych.
+ *
+ * Argumenty:
+ *      LZ1 - pierwszy element dzielenia modulo,
+ *      LZ2 - drugi element dzielenia modulo.
+ *
+ * Warunek wstepny:
+ *      - Czesc rzeczywista i urojona drugiego
+ *        elementu dzialania musza byc rozne od 
+ *        zera.
+ *
+ * Zwraca:
+ *      Zwraca liczbe zespolona, ktorej czesc
+ *      rzeczywista jest wynikiem dzielenia modulo
+ *      czesci rzeczywistych elementow dzialania oraz
+ *      czesc urojona jest wynikiem dzielenia modulo
+ *      czesci urojonych elementow dzialania.
+ */
+LZespolona operator % (LZespolona LZ1, LZespolona LZ2)
+{
+  int pomre, pomim, LZ1rei, LZ1imi, LZ2rei, LZ2imi;
+  LZespolona pomLZ;
+
+  LZ1rei = LZ1.re;
+  LZ1imi = LZ1.im;
+  LZ2rei = LZ2.re;
+  LZ2imi = LZ2.im;
+
+  pomre = LZ1rei % LZ2rei;
+  pomim = LZ1imi % LZ2imi;
+
+  if (pomre == 0 && pomim == 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+
+  if (pomre != 0 && pomim != 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+
+  if (pomre != 0 && pomim == 0)
+  {
+    pomLZ.re = pomre;
+    pomLZ.im = pomim;
+  }
+  
+  return pomLZ;
 }

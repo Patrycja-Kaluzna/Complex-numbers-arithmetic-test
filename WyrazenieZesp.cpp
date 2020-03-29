@@ -31,6 +31,9 @@ void Wyswietl (WyrazenieZesp WyrZ)
     case Op_Dziel:
         cout << " /";
         break;
+    case Op_Modulo:
+        cout << " %";
+        break;
     }
     Wyswietl (WyrZ.Arg2);
 }
@@ -51,8 +54,8 @@ void Wyswietl (WyrazenieZesp WyrZ)
  * 
  * Zwraca:
  *      W przypadku powodzenia wczytane wyrazenie
- *      zespolone, a w przciwynym przypadku wyswietla 
- *      stosowny komunikat o bledzie.
+ *      zespolone, a w przeciwnym przypadku wyswietla 
+ *      tez stosowny komunikat o bledzie.
  */
 WyrazenieZesp WczytajWZ ()
 {  
@@ -74,6 +77,9 @@ WyrazenieZesp WczytajWZ ()
         break;
     case '/':
         WyrZ.Op = Op_Dziel;
+        break;
+    case '%':
+        WyrZ.Op = Op_Modulo;
         break;
     default:
         cerr << "Blad: wczytanie wyrazenia zespolonego nie powiodlo sie" << endl;
@@ -98,8 +104,8 @@ WyrazenieZesp WczytajWZ ()
  *             nastepnie obliczone.
  * 
  * Warunek wstepny:
- *      Poprawnie zainicjowane elementy struktury
- *      WyrazenieZesp (wiec tez LZespolona). 
+ *      - Poprawnie zainicjowane elementy struktury
+ *        WyrazenieZesp (wiec tez LZespolona). 
  * 
  * Zwraca:
  *      Liczbe zespolona bedaca wynikiem obliczen.
@@ -121,6 +127,9 @@ LZespolona Oblicz (WyrazenieZesp WyrZ)
         break;
     case Op_Dziel:
         LZ = WyrZ.Arg1 / WyrZ.Arg2;
+        break;
+    case Op_Modulo:
+        LZ = WyrZ.Arg1 % WyrZ.Arg2;
         break;
     }
     return LZ;
@@ -165,6 +174,9 @@ ostream & operator << (ostream & StreamWyj, WyrazenieZesp WZ)
         break;
     case Op_Dziel:
         StreamWyj << " /";
+        break;
+    case Op_Modulo:
+        StreamWyj << " %";
         break;
     }
     StreamWyj << WZ.Arg2;

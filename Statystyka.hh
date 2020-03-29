@@ -8,7 +8,7 @@ using namespace std;
 
 /*
  * Plik zawiera definicje struktury Statystyka oraz
- * zapowiedz funkcji dzialajacych na tej strukturze.
+ * zapowiedz funkcji dzialajacej na tej strukturze.
  */
 
 /*

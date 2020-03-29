@@ -1,14 +1,24 @@
 #include "BazaTestu.hh"
 #include "LZespolona.hh"
 #include "Statystyka.hh"
+#include "WyrazenieZesp.hh"
 
 #include <iostream>
 
 using namespace std;
 
-int main(int argc, char **argv)
+int main (int argc, char **argv)
 {
-  /*if (argc < 2) {
+  BazaTestu BazaT = {nullptr, 0, 0};
+  WyrazenieZesp WyrZ_PytanieTestowe;
+  LZespolona odp_uzytkownika, poprawna_odp;
+  Statystyka stat;
+  int licznik = 0;
+
+  cout << endl;
+
+  if (argc < 2) 
+  {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;
     cout << " Dopuszczalne nazwy to: latwy, trudny." << endl;
@@ -16,25 +26,54 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  BazaTestu  BazaT = { nullptr, 0, 0 };
-
-  if (InicjalizujTest(&BazaT,argv[1]) == false) {
+  if (InicjalizujTest (&BazaT, argv[1]) == false)
+  {
     cerr << " Inicjalizacja testu nie powiodla sie." << endl;
     return 1;
   }
   
-  cout << endl;
-  cout << " Start testu arytmetyki zespolonej: " << argv[1] << endl;
+  while (PobierzNastpnePytanie (&BazaT, &WyrZ_PytanieTestowe) == true)
+  {
+    cout << " Podaj wynik operacji:" << WyrZ_PytanieTestowe << " =" << endl;
+    cout << " Twoja odpowiedz: ";
+    cin >> odp_uzytkownika;
+
+    while (cin.fail() && licznik < 2)
+    {
+      cout << endl;
+      cout << " Blad zapisu liczby zespolonej. Sprobuj jeszcze raz." << endl;
+      cout << endl;
+      cin.clear();
+      cin.ignore(10000, '\n');
+      cout << " Twoja odpowiedz: ";
+      cin >> odp_uzytkownika;
+      licznik++;
+    }
+
+    licznik = 0;
+    poprawna_odp = Oblicz (WyrZ_PytanieTestowe);
+
+    if (odp_uzytkownika == poprawna_odp)
+    {
+      stat.DobreOdp++;
+    } else {
+      stat.ZleOdp++;
+    }
+
+    cin.clear();
+    cin.ignore(10000, '\n');
+  }
+
+  cout << " Koniec testu" << endl;
   cout << endl;
 
-  WyrazenieZesp   WyrZ_PytanieTestowe;
-  
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-  }*/
+  WyswietlStatystyke (stat);
+  cout << endl;
+}
 
-  //TEST PRZECIĄŻEŃ OPERATORÓW +, -, *, / DLA LICZB ZESPOLONYCH (I JEDNOCZENIE TEST WYSWIETLANIA LICZBY ZESPOLONEJ) 
+ /*
+
+ //TEST PRZECIĄŻEŃ OPERATORÓW +, -, *, / DLA LICZB ZESPOLONYCH (I JEDNOCZENIE TEST WYSWIETLANIA LICZBY ZESPOLONEJ) 
 
   LZespolona Skl1, Skl2, Wynik;
   double Ltd;
@@ -44,7 +83,7 @@ int main(int argc, char **argv)
   Skl2.re = 3;
   Skl2.im = 4;
   Ltd = 2;
-
+  
   cout << endl;
   cout << " Dodawanie liczby zespolonych:";
   Wynik = Skl1 + Skl2;
@@ -70,9 +109,9 @@ int main(int argc, char **argv)
   Wynik = Skl1 / Skl2;
   Wyswietl (Wynik);
   cout << endl;
-
-  //TEST STATYSTYKI
-
+  
+  //TEST WYŚWIETLANIA STATYSTYKI
+  
   Statystyka Stat;
 
   Stat.DobreOdp = 2;
@@ -81,7 +120,7 @@ int main(int argc, char **argv)
   cout << endl;
   WyswietlStatystyke (Stat);
   cout << endl;
-
+  
   //TEST WYŚWIETLANIA WYRAŻENIA ZESPOLONEGO
 
   WyrazenieZesp WZ;
@@ -94,7 +133,7 @@ int main(int argc, char **argv)
 
   Wyswietl (WZ);
   cout << endl;
-
+  
   //TEST WCZYTYWANIA WYRAZENIA ZESPOLONEGO (I JEDNOCZESNIE LICZBY ZESPOLONEJ) ORAZ WYSWIETLANIA ICH
 
   WyrazenieZesp WZ2;
@@ -112,7 +151,7 @@ int main(int argc, char **argv)
   cout << endl;
 
   //WCZYTYWANIE LICZBY ZESPOLONEJ ZA POMOCA PRZECIAZENIA OPERATORA >> ORAZ WYSWIETLENIE JEJ
-
+  
   LZespolona LZ;
 
   cout << endl;
@@ -129,7 +168,12 @@ int main(int argc, char **argv)
 
   cout << endl << WZ << endl;
 
+  //TEST PRZECIEZENIA OPERATORA % DLA LICZB ZESOPLONYCH
+
   cout << endl;
-  cout << " Koniec testu" << endl;
+  cout << " Dzielenie modulo liczb zespolonych:";
+  Wynik = Skl1 % Skl2;
+  Wyswietl (Wynik);
   cout << endl;
-}
+
+  */

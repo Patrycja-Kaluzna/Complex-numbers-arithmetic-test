@@ -16,12 +16,18 @@ static WyrazenieZesp  TestLatwy[] =
     {{4,8}, Op_Dziel, {1,0}},
   };
 
+
+
 /*
- * Analogicznie zdefiniuj test "trudne"
- *
+ * Tablica, ktora jest widoczna tylko w tym module.
+ * Zawiera ona tresc trudnego testu.
  */
-
-
+static WyrazenieZesp TestTrudny[] =
+  { {{1.2,-3.4}, Op_Dodaj, {5.6,7.8}},
+    {{1.3,2.4}, Op_Odejmij, {-5.7,6.8}},
+    {{-1.1,2.2}, Op_Mnoz, {3.3,4.4}},
+    {{9.3,0.5}, Op_Dziel, {-0.1,0.27}},
+  };
 
 
 
@@ -42,13 +48,12 @@ static WyrazenieZesp  TestLatwy[] =
  *      - Parametr IloscPytan zawiera wartosc, ktora nie przekracza ilosci elementow
  *        w tablicy dostepnej poprzez wskTabTestu.
  */
-void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned int IloscPytan )
+void UstawTest (BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned int IloscPytan)
 {
   wskBazaTestu->wskTabTestu = wskTabTestu;
   wskBazaTestu->IloscPytan = IloscPytan;
   wskBazaTestu->IndeksPytania = 0;
 }
-
 
 
 
@@ -71,16 +76,18 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
  *              zainicjalizowany,
  *       false - w przypadku przeciwnym.
  */
-bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
+bool InicjalizujTest (BazaTestu  *wskBazaTestu, const char *sNazwaTestu)
 {
-  if (!strcmp(sNazwaTestu,"latwy")) {
+  if (!strcmp(sNazwaTestu,"latwy")) 
+  {
     UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
   }
-  /*
-   * Analogicznie zrob inicjalizacje dla testu trudne
-   */
-
+  if (!strcmp(sNazwaTestu,"trudny"))
+  {
+    UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
+    return true;
+  }
   cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
   return false;
 }
@@ -106,7 +113,7 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
  *              przypisane nowe wyrazenie zespolone z bazy,
  *       false - w przypadku przeciwnym.
  */
-bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazenie )
+bool PobierzNastpnePytanie (BazaTestu *wskBazaTestu, WyrazenieZesp *wskWyrazenie)
 {
   if (wskBazaTestu->IndeksPytania >= wskBazaTestu->IloscPytan) return false;
 

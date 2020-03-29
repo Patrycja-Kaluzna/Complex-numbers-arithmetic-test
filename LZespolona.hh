@@ -7,8 +7,8 @@ using namespace std;
 
 /*!
  *  Plik zawiera definicje struktury LZespolona oraz zapowiedzi
- *  przeciazen operatorow arytmetycznych dzialajacych na tej 
- *  strukturze, a takze innych funkcji z nia zwiazanych.
+ *  przeciazen operatorow dzialajacych na tej strukturze,
+ *  a takze innych funkcji z nia zwiazanych.
  */
 
 /*!
@@ -50,7 +50,7 @@ double Modul2 (LZespolona);
 LZespolona operator / (LZespolona, double);
 
 /*
- * Realizuje dzielenie dwoch liczb zespolonych.
+ * Realizuje dzielenie liczb zespolonych.
  */
 LZespolona operator / (LZespolona, LZespolona);
 
@@ -73,5 +73,15 @@ istream & operator >> (istream &, LZespolona &);
  * Wyswietla liczbe zespolona.
  */
 ostream & operator << (ostream &, LZespolona);
+
+/*
+ * Porównuje ze sobą dwie liczby zespolone.
+ */
+bool operator == (LZespolona LZ1, LZespolona LZ2);
+
+/*
+ * Realizuje dzielenie modulo liczb zespolonych.
+ */
+LZespolona operator % (LZespolona, LZespolona);
 
 #endif
